@@ -1,3 +1,13 @@
+/*
+Irene Liu
+irliu@chapman.edu
+2313260
+CPSC 350-02
+Assignment 3
+
+GenStack.h contains a templatized stack implementation
+*/
+
 #ifndef GEN_STACK
 #define GEN_STACK
 
@@ -28,13 +38,12 @@ public:
   bool isEmpty();
   bool isFull();
   void growArray();
-  void getInfo() { cout << size << " " << maxSize << endl; } // for debugging
+  int getSize();
 
 private:
   T* stackArray;
   int size;
   int maxSize;
-
 };
 
 template<class T>
@@ -57,7 +66,6 @@ template<class T>
 GenStack<T>::~GenStack()
 {
   delete [] stackArray;
-  cout << "Destructor";
 }
 
 template<class T>
@@ -82,7 +90,6 @@ T GenStack<T>::peek() throw(EmptyStackException)
   if (isEmpty())
     throw EmptyStackException("Could not peek at empty stack");
   return stackArray[size-1];
-
 }
 
 template<class T>
@@ -108,6 +115,12 @@ void GenStack<T>::growArray()
   }
   delete [] stackArray;
   stackArray = newArray;
+}
+
+template<class T>
+int GenStack<T>::getSize()
+{
+  return size;
 }
 
 #endif
